@@ -9,14 +9,14 @@
 | Supersedes | nothing |
 | Status | Released. Loaded on demand. |
 
-Implements plan sections 1.2, 1.4, 1.5, 1.6, 1.7, 1.8. Enforced statically by `v1/utils/sw-lint.sh`.
+Implements plan sections 1.2, 1.4, 1.5, 1.6, 1.7, 1.8.
 
 ## 1. Addresses
 
 | Address | Resolves to |
 |---|---|
-| `feature:<name>` | `v1/feature/<name>.md` |
-| `spec:<feature>/<section>` | `v1/specs/<feature>/<section>.md` |
+| `feature:<name>` | `feature/<name>.md` |
+| `spec:<feature>/<section>` | `specs/<feature>/<section>.md` |
 
 A spec section is one file. Sections are small on purpose, so a rule can be loaded without a whole document. `<name>`, `<feature>` and `<section>` are lowercase letters, digits and hyphens.
 

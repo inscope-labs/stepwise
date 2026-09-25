@@ -6,7 +6,7 @@
 | Component | feature `logging` (Tier 2) |
 | Version | 1.6.0 |
 | Depends on | nothing |
-| Supersedes | the **Logging** paragraph in `v1/prompt.md` 1.5.0 (moved here verbatim) |
+| Supersedes | the **Logging** paragraph in `prompt.md` 1.5.0 (moved here verbatim) |
 | Status | Released. Loaded on demand. |
 
 Precedence: Prompt > Feature > Specs. Nothing here relaxes a rule in the mandatory prompt.

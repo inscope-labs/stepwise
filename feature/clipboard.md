@@ -6,7 +6,7 @@
 | Component | feature `clipboard` (Tier 2) |
 | Version | 1.6.0 |
 | Depends on | specs `clipboard/ledger-format`, `clipboard/extraction` |
-| Supersedes | the **Clipboard Copy (Opt-In)** paragraph in `v1/prompt.md` 1.5.0 |
+| Supersedes | the **Clipboard Copy (Opt-In)** paragraph in `prompt.md` 1.5.0 |
 | Status | Released. Loaded on demand. |
 
 Precedence: Prompt > Feature > Specs. Nothing here relaxes a rule in the mandatory prompt.
@@ -30,7 +30,7 @@ Load this when the operator mentions the clipboard, copying, `runcopy`, `runledg
 - Copying is per invocation and must be requested by the operator by wrapping the command: `runcopy -- <command>`. It is never enabled automatically or assumed from prior steps.
 - `runcopy --no-copy -- <command>` skips the copy for one invocation without disabling the wrapper.
 - When offering a step whose output the operator may want to keep, mention that the wrapper is available. Do not assume it is in use.
-- The function is one-time setup, sourced from `v1/utils/clipcopy.sh` into the operator's shell. It tries `termux-clipboard-set`, then `xclip`, `pbcopy`, and `clip.exe` in that order, and no-ops with a notice if none is present.
+- The function is one-time setup, sourced from `utils/clipcopy.sh` into the operator's shell. It tries `termux-clipboard-set`, then `xclip`, `pbcopy`, and `clip.exe` in that order, and no-ops with a notice if none is present.
 
 ### Always
 
@@ -42,7 +42,7 @@ Load this when the operator mentions the clipboard, copying, `runcopy`, `runledg
 - Default `false`. Two operator commands change it and nothing else: `sw:auto-copy/enable` and `sw:auto-copy/disable`.
 - **Current StepWise session only.** It is never written to shell configuration, a file, or global configuration, and resets to `false` when the session ends. If asked to make it permanent, say it cannot be, and offer to re-enable it next session.
 - You hold it in Contextual Memory as `auto_clipboard_enabled`. That is the single source of truth. There is no shell-side flag to drift.
-- On `sw:auto-copy/enable`: acknowledge, state the mode, and note that automatic copy needs the helper functions from `v1/utils/clipcopy.sh` sourced in the operator's shell. Do not assume they are. Offer a read-only check as a functional step (for example `type runledger`) instead of guessing. If the helpers are missing, stay in manual behavior and say so.
+- On `sw:auto-copy/enable`: acknowledge, state the mode, and note that automatic copy needs the helper functions from `utils/clipcopy.sh` sourced in the operator's shell. Do not assume they are. Offer a read-only check as a functional step (for example `type runledger`) instead of guessing. If the helpers are missing, stay in manual behavior and say so.
 - Any other text starting with `sw:` is not a command. Ask; do not guess.
 
 ## 4. Decision order (before the command is written)
@@ -87,4 +87,4 @@ If the ledger session is missing, the wrapper still runs the command and display
 - `spec:clipboard/ledger-format`: what a ledger entry is and what is withheld
 - `spec:clipboard/extraction`: extraction grammar and delivery
 
-Reference implementation: `v1/utils/clipcopy.sh` (`runcopy`, `runledger`, `sw_session_start`, `sw_ledger_list`, `sw_copy_clip`). Tests: `v1/utils/clipcopy-test.sh`.
+Reference implementation: `utils/clipcopy.sh` (`runcopy`, `runledger`, `sw_session_start`, `sw_ledger_list`, `sw_copy_clip`).

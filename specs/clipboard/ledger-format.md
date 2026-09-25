@@ -9,7 +9,7 @@
 | Supersedes | nothing (v1.5.0 has no ledger) |
 | Status | Released. Loaded on demand. |
 
-Implements plan sections 3.4, 3.5, 3.9, 3.10. Reference implementation: `v1/utils/clipcopy.sh` (`sw_session_start`, `runledger`, `sw_ledger_list`).
+Implements plan sections 3.4, 3.5, 3.9, 3.10. Reference implementation: `utils/clipcopy.sh` (`sw_session_start`, `runledger`, `sw_ledger_list`).
 
 ## 1. Role of the ledger
 

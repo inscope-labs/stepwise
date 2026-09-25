@@ -155,7 +155,7 @@ runcopy() {
 }
 
 # --- Session ledger (1.6.0 draft) ---------------------------------------------
-# Spec: v1/specs/clipboard/ledger-format.md and extraction.md.
+# Spec: specs/clipboard/ledger-format.md and extraction.md.
 #
 #   sw_session_start                       # once per shell; exports SW_SESSION_ID
 #   runledger [--objective=..] [--step=..] [--risk=..] [--copy] -- <command> [args...]

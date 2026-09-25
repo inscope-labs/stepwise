@@ -9,7 +9,7 @@
 | Supersedes | nothing |
 | Status | Released. Loaded on demand. |
 
-Implements plan sections 3.3 (Stage 2), 3.6, 3.7. Reference implementation: `sw_copy_clip` in `v1/utils/clipcopy.sh`. Per 3.7 this **extends** the existing clipboard abstraction. There is no second clipboard implementation.
+Implements plan sections 3.3 (Stage 2), 3.6, 3.7. Reference implementation: `sw_copy_clip` in `utils/clipcopy.sh`. Per 3.7 this **extends** the existing clipboard abstraction. There is no second clipboard implementation.
 
 ## 1. Principle
 

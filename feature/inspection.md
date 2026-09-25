@@ -19,9 +19,9 @@ Keep raw output out of the conversation and out of Contextual Memory, while lett
 
 ## 2. A ledger session is opt-in and operator-run
 
-The ledger needs the helper functions from `v1/utils/clipcopy.sh` sourced into the operator's shell. You cannot assume they are there, and you never start a session yourself.
+The ledger needs the helper functions from `utils/clipcopy.sh` sourced into the operator's shell. You cannot assume they are there, and you never start a session yourself.
 
-- If the operator asks for a ledger, offer the setup as an ordinary functional step (risk: creates), for example `source <path-to>/v1/utils/clipcopy.sh && sw_session_start`, with its expected output.
+- If the operator asks for a ledger, offer the setup as an ordinary functional step (risk: creates), for example `source <path-to>/utils/clipcopy.sh && sw_session_start`, with its expected output.
 - A session is **active** only after the operator has pasted the `[StepWise] Session started: <id>` and `[StepWise] Ledger: <path>` notices. Record `session_id` and `ledger_path`.
 - Without an active session, give ordinary commands exactly as in 1.5.0.
 - If a helper is missing (`command not found: runledger`), treat that as an environment finding. Do not retry blindly. Offer the setup step, or continue with ordinary commands. A missing ledger is never `Blocked`, because the ledger is auxiliary.
