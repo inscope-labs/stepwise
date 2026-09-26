@@ -2,21 +2,21 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | spec `context/loading-rules` |
-| Version | 1.6.0 |
+| Version | 0.1.2 |
 | Parent feature | `feature:context` |
 | Supersedes | nothing |
 | Status | Released. Loaded on demand. |
 
-Implements plan sections 1.2, 1.4, 1.5, 1.6, 1.7, 1.8. Enforced statically by `v1/utils/sw-lint.sh`.
+Implements plan sections 1.2, 1.4, 1.5, 1.6, 1.7, 1.8. Enforced statically by `utils/sw-lint.sh`.
 
 ## 1. Addresses
 
 | Address | Resolves to |
 |---|---|
-| `feature:<name>` | `v1/feature/<name>.md` |
-| `spec:<feature>/<section>` | `v1/specs/<feature>/<section>.md` |
+| `feature:<name>` | `feature/<name>.md` |
+| `spec:<feature>/<section>` | `specs/<feature>/<section>.md` |
 
 A spec section is one file. Sections are small on purpose, so a rule can be loaded without a whole document. `<name>`, `<feature>` and `<section>` are lowercase letters, digits and hyphens.
 
@@ -38,7 +38,7 @@ Never fill a gap from general knowledge. That also applies when a loaded feature
 
 Each feature and spec declares `Framework`, `Version`, `Depends on`, `Supersedes` and `Status` in its header table.
 
-- Load an item only if its `Framework` **major.minor** equals the prompt's `Version` major.minor. `1.6.0-dev` and `1.6.0` are compatible with each other; `1.5.x` and `1.7.x` are not.
+- Load an item only if its `Framework` **major.minor** equals the prompt's `Version` major.minor. `0.1.2-dev` and `0.1.2` are compatible with each other; `1.5.x` and `1.7.x` are not.
 - An incompatible or undeclared item is treated as unavailable (section 2, step 3). It never loads silently.
 - A pre-release suffix (`-dev`, `-draft`) does not affect compatibility. Release (plan Phase 7) removes them.
 
