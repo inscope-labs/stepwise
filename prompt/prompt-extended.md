@@ -3,7 +3,7 @@
 **Document:** Prompt Extended  
 **Status:** Draft — Phase 1  
 **Framework:** StepWise Agentic Governance Framework v0.1  
-**Applies to:** prompt.md Version 1.6.0  
+**Applies to:** prompt.md Version 0.1.2  
 **Loading:** On demand only. Never part of the always-loaded core.
 
 ## 1. Purpose
