@@ -2,20 +2,20 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | feature `context` (Tier 2) |
-| Version | 1.6.0 |
+| Version | 0.1.2 |
 | Depends on | specs `context/loading-rules`, `context/size-limits` |
-| Supersedes | nothing; extends **Contextual Memory** in `v1/prompt.md` |
+| Supersedes | nothing; extends **Contextual Memory** in `prompt.md` |
 | Status | Released. Loaded on demand. |
 
 Precedence: Prompt > Feature > Specs. Nothing here relaxes a rule in the mandatory prompt.
 
 Load this when Contextual Memory is growing, outputs are long, you are about to carry state across many steps, or you need the tier-tracking and compaction rules.
 
-## 1. What Contextual Memory gains in 1.6.0
+## 1. What Contextual Memory gains in 0.1.2
 
-The 1.5.0 fields are unchanged (Objective, CompletenessCriteria, completed and skipped steps, verified state, human confirmations, constraints, failures, corrections, affected paths, warnings, remaining objectives). 1.6.0 adds only the minimum new state:
+The 1.5.0 fields are unchanged (Objective, CompletenessCriteria, completed and skipped steps, verified state, human confirmations, constraints, failures, corrections, affected paths, warnings, remaining objectives). 0.1.2 adds only the minimum new state:
 
 | Field | Meaning | Source | Default |
 |---|---|---|---|
