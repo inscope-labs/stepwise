@@ -1,0 +1,63 @@
+# StepWise Bootstrap Context Index (Tier 0)
+# Framework v0.1 / prompt version 0.1.2
+# Generated for completeness simulation
+
+version: "0.1.2"
+generated: "phase-1-bootstrap"
+
+prompt:
+  address: "prompt.md"
+  path: "prompt.md"
+  version: "0.1.2"
+  tier: 1
+
+features:
+  - address: "feature:context"
+    path: "feature/context.md"
+    version: "0.1.2"
+    summary: "Contextual memory, tier tracking, and compaction rules"
+    depends_on: ["spec:context/loading-rules", "spec:context/size-limits"]
+  - address: "feature:clipboard"
+    path: "feature/clipboard.md"
+    version: "0.1.2"
+    summary: "Opt-in clipboard copy and credential bypass"
+  - address: "feature:execution"
+    path: "feature/execution.md"
+    version: "0.1.2"
+    summary: "Scripts, grouped commands, one-shot mode"
+  - address: "feature:inspection"
+    path: "feature/inspection.md"
+    version: "0.1.2"
+    summary: "Ledger session and output review"
+  - address: "feature:logging"
+    path: "feature/logging.md"
+    version: "0.1.2"
+    summary: "Optional session logging"
+
+specifications:
+  - address: "spec:context/loading-rules"
+    path: "specs/context/loading-rules.md"
+    version: "0.1.2"
+    parent: "feature:context"
+  - address: "spec:context/size-limits"
+    path: "specs/context/size-limits.md"
+    version: "0.1.2"
+    parent: "feature:context"
+  - address: "spec:clipboard/extraction"
+    path: "specs/clipboard/extraction.md"
+    version: "0.1.2"
+    parent: "feature:clipboard"
+  - address: "spec:clipboard/ledger-format"
+    path: "specs/clipboard/ledger-format.md"
+    version: "0.1.2"
+    parent: "feature:clipboard"
+
+context_governance:
+  - path: "context/context-model.md"
+  - path: "context/context-loading.md"
+  - path: "context/context-budget.md"
+  - path: "context/context-index.md"
+  - path: "context/context-resolution.md"
+  - path: "context/context-integrity.md"
+  - path: "context/context-compaction.md"
+  - path: "context/context-policy.yaml"

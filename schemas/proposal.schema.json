@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inscope-labs.github.io/stepwise/proposal.schema.json",
+  "title": "StepWise Proposal Envelope",
+  "description": "AI-generated or orchestrator-generated proposal that enters the local enforcement pipeline. Framework v0.1 / prompt 0.1.2.",
+  "type": "object",
+  "required": ["proposal_id", "session_id", "step_id", "goal", "command_envelope", "risk", "created_at"],
+  "properties": {
+    "proposal_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "objective_id": { "type": "string" },
+    "step_id": { "type": "string" },
+    "goal": { "type": "string" },
+    "command_envelope": {
+      "$ref": "command-envelope.schema.json"
+    },
+    "risk": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "expected": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["marker", "description"],
+        "properties": {
+          "marker": { "type": "integer", "minimum": 1 },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "evidence_requirements": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "authorization_required": { "type": "boolean" },
+    "policy_decision": {
+      "type": "string",
+      "enum": ["ALLOW", "REQUIRE_APPROVAL", "DENY", "BLOCKED"]
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "created_by": { "type": "string" }
+  },
+  "additionalProperties": true
+}

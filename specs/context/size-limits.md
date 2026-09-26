@@ -2,14 +2,14 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | spec `context/size-limits` |
-| Version | 1.6.0 |
+| Version | 0.1.2 |
 | Parent feature | `feature:context` |
 | Supersedes | nothing |
 | Status | Released. Loaded on demand. |
 
-Implements plan sections 1.3 and 1.9. This file is the single source of truth for the numbers below.
+Implements plan sections 1.3 and 1.9. Checked by `bash utils/sw-lint.sh`, which reads the `limit:` lines below, so this file is the single source of truth for the numbers.
 
 ## 1. Three different measurements
 
@@ -19,8 +19,8 @@ source size  ≠  serialized context size  ≠  token cost
 
 | Measurement | What it is | Where it is measured |
 |---|---|---|
-| Source size | bytes of the file in the repository | measured directly against the file |
-| Serialized context size | bytes actually supplied to the model for a session: the prompt plus whatever optional items were loaded | worst-case sum of the prompt plus the largest optional items |
+| Source size | bytes of the file in the repository | `sw-lint.sh` (**enforced**) |
+| Serialized context size | bytes actually supplied to the model for a session: the prompt plus whatever optional items were loaded | `sw-lint.sh --report` (worst case) |
 | Token cost | what the model's tokenizer charges | **estimated** as `bytes / 4`. The real figure depends on the tokenizer and must be measured with it |
 
 Source bytes are the enforced metric because they are deterministic and checkable in CI. Token figures are an estimate and are labeled as one everywhere.
@@ -52,16 +52,16 @@ A change that needs to exceed a limit must change the number here, in the same c
 
 ## 3. What the limits are for
 
-The framework grew a ledger, extraction, modes and memory rules for 1.6.0. Without tiers, all of that would be part of the mandatory prompt. With tiers, it loads on demand. At the time this was introduced:
+The framework grew a ledger, extraction, modes and memory rules for 0.1.2. Without tiers, all of that would be part of the mandatory prompt. With tiers, it loads on demand. At the time this was introduced:
 
 | | Bytes | Est. tokens |
 |---|---|---|
 | 1.5.0 mandatory prompt | 18,003 | ~4,500 |
-| 1.6.0 mandatory prompt | 19,001 | ~4,750 |
+| 0.1.2 mandatory prompt | 19,001 | ~4,750 |
 | Worst case with optional context (largest feature + largest spec) | ~31,000 | ~7,800 |
 | Everything loaded at once, which the rules forbid | ~55,000 | ~13,700 |
 
-The mandatory prompt did **not** shrink: it grew about 5.5%, because the tier machinery (index, escalation rules, session state) costs more than the situational text moved out saved. The gain is that roughly 30 KB of capability stays out of it.
+The mandatory prompt did **not** shrink: it grew about 5.5%, because the tier machinery (index, escalation rules, session state) costs more than the situational text moved out saved. The gain is that roughly 30 KB of capability stays out of it. Run `bash utils/sw-lint.sh --report` for current figures.
 
 ## 4. Failure behavior
 

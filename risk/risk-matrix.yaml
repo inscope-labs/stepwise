@@ -1,0 +1,107 @@
+# StepWise Risk Matrix
+# Framework: StepWise Agentic Governance Framework v0.1
+# Prompt version: 0.1.2
+# Status: Draft — Phase 1
+#
+# Maps risk dimensions (and common combinations) to required
+# governance controls. Implementations SHOULD treat the highest
+# applicable control level as authoritative.
+
+version: "0.1.2"
+
+dimensions:
+  R0:
+    name: Read Only
+    control_level: Low
+    requires_authorization: false
+    requires_exact_action_binding: false
+    clipboard_allowed: true
+    notes: Ordinary discovery and inspection
+  R1:
+    name: Create
+    control_level: Moderate
+    requires_authorization: true
+    requires_exact_action_binding: false
+    clipboard_allowed: true
+  R2:
+    name: Modify
+    control_level: Moderate
+    requires_authorization: true
+    requires_exact_action_binding: false
+    clipboard_allowed: true
+  R3:
+    name: Privileged
+    control_level: High
+    requires_authorization: true
+    requires_exact_action_binding: true
+    clipboard_allowed: true
+  R4:
+    name: Credential Sensitive
+    control_level: High
+    requires_authorization: true
+    requires_exact_action_binding: true
+    clipboard_allowed: false   # never auto-copy
+    redact_from_ai_context: true
+  R5:
+    name: Network
+    control_level: Moderate
+    requires_authorization: true
+    requires_exact_action_binding: false
+    clipboard_allowed: true
+  R6:
+    name: Persistent State
+    control_level: Moderate
+    requires_authorization: true
+    requires_exact_action_binding: false
+    clipboard_allowed: true
+  R7:
+    name: Destructive
+    control_level: High
+    requires_authorization: true
+    requires_exact_action_binding: true
+    clipboard_allowed: true
+  R8:
+    name: Irreversible
+    control_level: Critical
+    requires_authorization: true
+    requires_exact_action_binding: true
+    clipboard_allowed: true
+    recovery_assessment_required: true
+  R9:
+    name: Protected Resource
+    control_level: High
+    requires_authorization: true
+    requires_exact_action_binding: true
+    clipboard_allowed: true
+  R10:
+    name: Production/Release Impacting
+    control_level: High
+    requires_authorization: true
+    requires_exact_action_binding: true
+    clipboard_allowed: true
+
+# Example combination overrides (highest wins if not listed)
+combinations:
+  - dimensions: [R7, R9]
+    control_level: Critical
+    notes: Destructive action on protected resource
+  - dimensions: [R8, R10]
+    control_level: Critical
+    notes: Irreversible production/release change
+  - dimensions: [R4, R5]
+    control_level: High
+    clipboard_allowed: false
+    notes: Credential material over the network
+
+control_levels:
+  Low:
+    description: Normal StepWise progression and evidence where required
+  Moderate:
+    description: Explicit risk classification, evidence, authorization when policy requires
+  High:
+    description: Explicit authorization, exact-action binding, stronger evidence, audit record
+  Critical:
+    description: >
+      Explicit human authorization, confirmation of target/scope,
+      recovery assessment, exact-action binding, enhanced audit,
+      additional policy approval as required

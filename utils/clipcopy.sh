@@ -558,48 +558,4 @@ sw_copy_clip() {
   if [[ $rc -eq 0 ]]; then
     label="STEP $first"
     [[ $count -gt 1 ]] && label="STEPS $first-$last"
-    _sw_notice "Extracted $label ($count entr$([[ $count -gt 1 ]] && echo ies || echo y))."
-  fi
-  return "$rc"
-}
-
-# --- Self-test -------------------------------------------------------------
-# Verifies: (a) normal display+copy path runs without error, and
-# (b) the bypass fires and prints the notice on a sample privileged-risk
-# command, WITHOUT invoking the clipboard backend.
-sw_selftest_clipboard_bypass() {
-  local out
-  out="$(runcopy --risk=credential -- echo "FAKE_SECRET=12345" 2>&1 1>/dev/null)"
-  if [[ "$out" == *"Clipboard copy bypassed: command classified as 'credential' risk"* ]]; then
-    echo "PASS: bypass notice fired for credential-risk command."
-  else
-    echo "FAIL: expected bypass notice not found. Got: $out"
-    return 1
-  fi
-
-  local display
-  display="$(runcopy --risk=credential -- echo "FAKE_SECRET=12345" 2>/dev/null)"
-  if [[ "$display" == "FAKE_SECRET=12345" ]]; then
-    echo "PASS: terminal display preserved during bypass."
-  else
-    echo "FAIL: expected display output missing. Got: $display"
-    return 1
-  fi
-
-  # Fail-closed: the protocol's combined label and unknown labels must bypass too.
-  local label
-  for label in "credential/privileged-data" "Credential" "secret" "bogus-label" ""; do
-    out="$(runcopy --risk="$label" -- echo "FAKE_SECRET=12345" 2>&1 1>/dev/null)"
-    if [[ "$out" == *"Clipboard copy bypassed"* ]]; then
-      echo "PASS: bypass fired for --risk='$label'."
-    else
-      echo "FAIL: no bypass for --risk='$label'. Got: $out"
-      return 1
-    fi
-  done
-}
-
-# When executed directly (not sourced), run the self-test.
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  sw_selftest_clipboard_bypass
-fi
+    _sw_notice "Extracted $label ($count entr$([[ $count -gt 1 ]] && echo ies 

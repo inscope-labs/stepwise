@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | spec `clipboard/ledger-format` |
-| Version | 1.6.0 |
+| Version | 0.1.2 |
 | Parent feature | `feature:inspection`, `feature:clipboard` |
 | Supersedes | nothing (v1.5.0 has no ledger) |
 | Status | Released. Loaded on demand. |

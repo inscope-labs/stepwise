@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | feature `inspection` (Tier 2) |
-| Version | 1.6.0 |
+| Version | 0.1.2 |
 | Depends on | specs `clipboard/ledger-format`, `clipboard/extraction` |
 | Supersedes | nothing (1.5.0 has optional logging only) |
 | Status | Released. Loaded on demand. |

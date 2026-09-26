@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inscope-labs.github.io/stepwise/policy-schema.json",
+  "title": "StepWise Policy Schema",
+  "description": "Machine-readable representation of a StepWise policy rule or policy set. Framework v0.1, prompt version 0.1.2.",
+  "type": "object",
+  "required": ["policy_id", "version", "decision", "rules"],
+  "properties": {
+    "policy_id": {
+      "type": "string",
+      "description": "Unique identifier for this policy set"
+    },
+    "version": {
+      "type": "string",
+      "description": "Policy version (semver recommended)"
+    },
+    "description": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["ALLOW", "REQUIRE_APPROVAL", "DENY", "BLOCKED"],
+      "description": "Default decision when no more specific rule matches"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rule_id", "match", "decision"],
+        "properties": {
+          "rule_id": { "type": "string" },
+          "description": { "type": "string" },
+          "match": {
+            "type": "object",
+            "description": "Conditions that must all be true for the rule to apply",
+            "properties": {
+              "risk_dimensions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10",
+                           "read-only", "creates", "modifies", "privileged",
+                           "credential/privileged-data", "network", "destructive",
+                           "difficult to reverse", "irreversible", "protected-resource",
+                           "production/release-impacting"]
+                }
+              },
+              "resource_class": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "operation": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "actor": { "type": "string" },
+              "environment": { "type": "string" },
+              "protected_resource": { "type": "boolean" }
+            }
+          },
+          "decision": {
+            "type": "string",
+            "enum": ["ALLOW", "REQUIRE_APPROVAL", "DENY", "BLOCKED"]
+          },
+          "authorization_required": { "type": "boolean" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "precedence": {
+      "type": "string",
+      "description": "How conflicting rules are resolved",
+      "enum": ["most_restrictive", "first_match", "explicit_priority"]
+    },
+    "fail_closed": {
+      "type": "boolean",
+      "default": true,
+      "description": "If true, inability to evaluate yields BLOCKED"
+    }
+  },
+  "additionalProperties": false
+}

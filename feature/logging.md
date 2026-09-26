@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | feature `logging` (Tier 2) |
-| Version | 1.6.0 |
+| Version | 0.1.2 |
 | Depends on | nothing |
 | Supersedes | the **Logging** paragraph in `prompt.md` 1.5.0 (moved here verbatim) |
 | Status | Released. Loaded on demand. |

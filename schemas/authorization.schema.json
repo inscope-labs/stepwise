@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inscope-labs.github.io/stepwise/authorization.schema.json",
+  "title": "StepWise Authorization Token Schema",
+  "description": "Machine-verifiable authorization artifact. Aligns with authorization/authorization-token.md. Framework v0.1 / prompt 0.1.2.",
+  "type": "object",
+  "required": [
+    "authorization_id", "session_id", "proposal_id", "action_hash",
+    "hash_algorithm", "canonicalization_version", "authorizer",
+    "created_at", "state"
+  ],
+  "properties": {
+    "authorization_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "objective_id": { "type": "string" },
+    "step_id": { "type": "string" },
+    "proposal_id": { "type": "string" },
+    "action_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "hash_algorithm": { "type": "string", "enum": ["sha256"] },
+    "canonicalization_version": { "type": "string" },
+    "risk": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "policy_decision": { "type": "string" },
+    "policy_version": { "type": "string" },
+    "authorizer": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": ["string", "null"], "format": "date-time" },
+    "scope": { "type": "object" },
+    "restrictions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "state": {
+      "type": "string",
+      "enum": ["AUTHORIZED", "CONSUMED", "REVOKED", "EXPIRED", "INVALID"]
+    },
+    "integrity": {
+      "type": "string",
+      "description": "HMAC, signature, or other integrity protection value"
+    }
+  },
+  "additionalProperties": false
+}

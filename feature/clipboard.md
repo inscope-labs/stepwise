@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | feature `clipboard` (Tier 2) |
-| Version | 1.6.0 |
+| Version | 0.1.2 |
 | Depends on | specs `clipboard/ledger-format`, `clipboard/extraction` |
 | Supersedes | the **Clipboard Copy (Opt-In)** paragraph in `prompt.md` 1.5.0 |
 | Status | Released. Loaded on demand. |
@@ -15,7 +15,7 @@ Load this when the operator mentions the clipboard, copying, `runcopy`, `runledg
 
 ## 1. Behavior change (flagged deliberately)
 
-1.5.0: clipboard copy is per-invocation opt-in and never automatic. 1.6.0 adds an **optional, session-scoped automatic mode**. The default is unchanged: it starts off. This is a new execution mode, not an implementation detail.
+1.5.0: clipboard copy is per-invocation opt-in and never automatic. 0.1.2 adds an **optional, session-scoped automatic mode**. The default is unchanged: it starts off. This is a new execution mode, not an implementation detail.
 
 ## 2. Modes
 
@@ -87,4 +87,4 @@ If the ledger session is missing, the wrapper still runs the command and display
 - `spec:clipboard/ledger-format`: what a ledger entry is and what is withheld
 - `spec:clipboard/extraction`: extraction grammar and delivery
 
-Reference implementation: `utils/clipcopy.sh` (`runcopy`, `runledger`, `sw_session_start`, `sw_ledger_list`, `sw_copy_clip`).
+Reference implementation: `utils/clipcopy.sh` (`runcopy`, `runledger`, `sw_session_start`, `sw_ledger_list`, `sw_copy_clip`). Tests: `utils/clipcopy-test.sh`.

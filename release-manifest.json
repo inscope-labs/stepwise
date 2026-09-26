@@ -1,0 +1,17 @@
+{
+  "component": "sw-sdk",
+  "framework": "StepWise Agentic Governance Framework",
+  "version": "0.1.2",
+  "release_date": "2026-09-26",
+  "status": "draft",
+  "execution_model": "human-controlled",
+  "scope_document": "docs/sw-client-v0.1.2-scope.md",
+  "conformance_document": "CONFORMANCE.md",
+  "checksum_manifest": "MANIFEST.sha256",
+  "license": "MIT",
+  "notes": [
+    "This release targets the v0.1.2 human-controlled execution model only.",
+    "See CONFORMANCE.md for an honest, per-dimension conformance status.",
+    "Several component directories (audit/, evidence/, provenance/, release/, security/, session/) are reserved placeholders for unimplemented Phase 2+ governance components."
+  ]
+}

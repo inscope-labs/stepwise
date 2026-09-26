@@ -1,0 +1,87 @@
+# StepWise Default Policy Set
+# Framework: StepWise Agentic Governance Framework v0.1
+# Prompt version: 0.1.2
+# Status: Draft — Phase 1
+
+policy_id: stepwise-default
+version: "0.1.2"
+description: >
+  Default StepWise policy. Prefer REQUIRE_APPROVAL for consequential
+  actions and DENY/BLOCKED for prohibited or unevaluable cases.
+decision: REQUIRE_APPROVAL   # safe default when no rule matches
+precedence: most_restrictive
+fail_closed: true
+
+rules:
+  # --- Read-only / low risk ---------------------------------
+  - rule_id: allow-read-only
+    description: Pure read-only operations require no extra approval
+    match:
+      risk_dimensions: [R0, read-only]
+    decision: ALLOW
+    authorization_required: false
+
+  # --- Create / Modify --------------------------------------
+  - rule_id: approval-create-modify
+    description: Creating or modifying state requires approval when not otherwise constrained
+    match:
+      risk_dimensions: [R1, R2, creates, modifies]
+    decision: REQUIRE_APPROVAL
+    authorization_required: true
+
+  # --- Privileged -------------------------------------------
+  - rule_id: approval-privileged
+    description: Elevated privileges always require explicit authorization
+    match:
+      risk_dimensions: [R3, privileged]
+    decision: REQUIRE_APPROVAL
+    authorization_required: true
+
+  # --- Credential / privileged-data -------------------------
+  - rule_id: approval-credential
+    description: Credential-sensitive operations require authorization and never auto-copy
+    match:
+      risk_dimensions: [R4, credential/privileged-data]
+    decision: REQUIRE_APPROVAL
+    authorization_required: true
+
+  # --- Network ----------------------------------------------
+  - rule_id: approval-network
+    description: Network-accessing operations require approval
+    match:
+      risk_dimensions: [R5, network]
+    decision: REQUIRE_APPROVAL
+    authorization_required: true
+
+  # --- Destructive / Irreversible ---------------------------
+  - rule_id: approval-destructive
+    description: Destructive or irreversible actions require explicit authorization
+    match:
+      risk_dimensions: [R7, R8, destructive, irreversible]
+    decision: REQUIRE_APPROVAL
+    authorization_required: true
+
+  # --- Protected resources ----------------------------------
+  - rule_id: approval-protected
+    description: Any touch of a protected resource requires authorization
+    match:
+      protected_resource: true
+      risk_dimensions: [R9, protected-resource]
+    decision: REQUIRE_APPROVAL
+    authorization_required: true
+
+  # --- Production / release ---------------------------------
+  - rule_id: approval-production
+    description: Production or release-impacting operations require authorization
+    match:
+      risk_dimensions: [R10, production/release-impacting]
+    decision: REQUIRE_APPROVAL
+    authorization_required: true
+
+  # --- Explicit denials (examples; extend as needed) --------
+  - rule_id: deny-unknown-resource
+    description: Operations against completely unknown protected classes are blocked
+    match:
+      resource_class: [unknown-protected]
+    decision: BLOCKED
+    authorization_required: false

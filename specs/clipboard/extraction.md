@@ -2,10 +2,10 @@
 
 | | |
 |---|---|
-| Framework | 1.6.0 |
+| Framework | 0.1.2 |
 | Component | spec `clipboard/extraction` |
-| Version | 1.6.0 |
-| Depends on | `clipboard/ledger-format` 1.6.0 |
+| Version | 0.1.2 |
+| Depends on | `clipboard/ledger-format` 0.1.2 |
 | Supersedes | nothing |
 | Status | Released. Loaded on demand. |
 
