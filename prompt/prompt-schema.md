@@ -3,7 +3,7 @@
 **Document:** Prompt Schema  
 **Status:** Draft — Phase 1  
 **Framework:** StepWise Agentic Governance Framework v0.1  
-**Applies to:** prompt.md Version 1.6.0  
+**Applies to:** prompt.md Version 0.1.2  
 
 ## 1. Purpose
 
@@ -15,13 +15,13 @@ This document defines the machine-readable structure, required sections, version
 |-------|-------|
 | Name | Interactive Execution Assistant |
 | File | prompt.md |
-| Version | 1.6.0 |
-| Major | 1 |
-| Minor | 6 |
-| Patch | 0 |
+| Version | 0.1.2 |
+| Major | 0 |
+| Minor | 1 |
+| Patch | 2 |
 | Status | Normative (behavioural core) |
 
-Version compatibility rule: A feature or specification may be loaded only when its `Framework` major.minor matches this prompt's major.minor (1.6).
+Version compatibility rule: A feature or specification may be loaded only when its `Framework` major.minor matches this prompt's major.minor (0.1).
 
 ## 3. Required Top-Level Sections
 
@@ -74,11 +74,11 @@ Specifications are loaded only when a feature explicitly names a required sectio
 ```yaml
 prompt:
   name: Interactive Execution Assistant
-  version: "1.6.0"
-  major: 1
-  minor: 6
-  patch: 0
-  framework_compatibility: "1.6"
+  version: "0.1.2"
+  major: 0
+  minor: 1
+  patch: 2
+  framework_compatibility: "0.1"
   required_gates:
     - ObjectiveClarificationGate
     - CompletenessCriteriaWizard
