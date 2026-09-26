@@ -1,0 +1,51 @@
+# StepWise Context Policy
+# Framework v0.1 / prompt version 0.1.2
+# Status: Draft — Phase 1
+
+version: "0.1.2"
+fail_closed: true
+
+tiers:
+  0:
+    name: bootstrap
+    target_tokens: 500
+    hard_ceiling_tokens: 1000
+    always_loaded: true
+  1:
+    name: core
+    target_tokens: 8000
+    hard_ceiling_tokens: 12000
+    always_loaded: true
+    artifacts:
+      - prompt.md
+  2:
+    name: feature
+    target_tokens_per_artifact: 4000
+    hard_ceiling_tokens_per_artifact: 6000
+    load_policy: on_demand
+    max_concurrent: 2
+  3:
+    name: specification
+    target_tokens_per_section: 2000
+    hard_ceiling_tokens_per_section: 3000
+    load_policy: on_demand_via_feature
+  4:
+    name: task_session
+    target_tokens: 6000
+    hard_ceiling_tokens: 10000
+  5:
+    name: evidence
+    default: index_only
+    raw_on_demand: true
+
+rules:
+  least_context: true
+  on_demand: true
+  bounded: true
+  non_transitive: true
+  index_before_content: true
+  future_feature_isolation: true
+
+compatibility:
+  require_framework_major_minor_match: true
+  active_prompt_version: "0.1.2"
