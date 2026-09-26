@@ -1,0 +1,34 @@
+# StepWise Local Client Configuration
+# Framework v0.1 / prompt version 0.1.2
+# Status: Draft — Phase 1
+
+client:
+  version: "0.1.2"
+  fail_closed: true
+  require_envelope: true
+  recompute_hash_locally: true
+
+paths:
+  policy_set: "policy/policy-defaults.yaml"
+  risk_matrix: "risk/risk-matrix.yaml"
+  schema_dir: "schemas"
+  audit_log: "${STEPWISE_HOME}/var/audit.log"   # implementation-defined
+
+authorization:
+  require_token: true
+  allow_one_time: true
+  default_ttl_seconds: 300
+
+policy:
+  engine: "local"
+  precedence: "most_restrictive"
+  unknown_decision: "BLOCKED"
+
+risk:
+  unknown_dimension_treatment: "elevate"
+  credential_clipboard: false
+
+logging:
+  level: "info"
+  include_hashes: true
+  redact_credentials: true
