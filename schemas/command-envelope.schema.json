@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inscope-labs.github.io/stepwise/command-envelope.schema.json",
+  "title": "StepWise Command Envelope",
+  "description": "Canonical structure for a command that may be authorized and executed. Framework v0.1 / prompt 0.1.2.",
+  "type": "object",
+  "required": ["command", "command_hash", "hash_algorithm", "canonicalization_version"],
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "Exact command string (or bounded sequence) to be executed"
+    },
+    "canonical_command": {
+      "type": "string",
+      "description": "Deterministic canonical form used for hashing"
+    },
+    "command_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA-256 (or approved) hex digest of the canonical command"
+    },
+    "hash_algorithm": {
+      "type": "string",
+      "enum": ["sha256"],
+      "default": "sha256"
+    },
+    "canonicalization_version": {
+      "type": "string",
+      "description": "Version of the canonicalization rules applied"
+    },
+    "working_directory": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "risk_dimensions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "timeout_seconds": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "additionalProperties": false
+}
